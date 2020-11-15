@@ -11,7 +11,7 @@ namespace TodoAppWebApiUsingMongoDb.Repositories
     {
         void Add(T tEntity);
         void Delete(string id);
-        void Update(T tEntity);
+        void Replace(T tEntity);
         T GetById(string id);
         List<T> GetAll();
         IMongoCollection<T> GetTable();

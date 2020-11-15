@@ -20,7 +20,15 @@ namespace TodoAppWebApiUsingMongoDb.Repositories
 
         public void Delete(string id)
         {
-            GetTable().DeleteOne(Builders<T>.Filter.Eq("_id", ObjectId.Parse(id)));
+           GetTable().DeleteOne(Builders<T>.Filter.Eq("_id", ObjectId.Parse(id)));
+        }
+
+        bool Exists(string id)
+        {
+            var _database = Client.GetDatabase("MyAppDb");
+            var _table = _database.GetCollection<Employee>("Employees");
+            var _queryable = _table.AsQueryable();
+            return _queryable.Any(u => u.Id == id);
         }
 
         public List<T> GetAll()
@@ -33,13 +41,12 @@ namespace TodoAppWebApiUsingMongoDb.Repositories
             return GetTable().Find(Builders<T>.Filter.Eq("_id", ObjectId.Parse(id))).FirstOrDefault();
         }
 
-        public void Update(T tEntity)
+        public void Replace(T tEntity)
         {
             var filter = Builders<T>.Filter.Eq("_id", ObjectId.Parse(tEntity.Id));
-            var update = Builders<T>.Update.Set("Name", "Ikramul haque chowehury");
-            GetTable().UpdateOne(filter, update);
+            GetTable().ReplaceOne(filter, tEntity);
         }
-
+        
         protected IMongoDatabase MongoDatabase
         {
             get { return Client.GetDatabase("MyAppDb"); }

@@ -18,39 +18,40 @@ namespace TodoAppWebApiUsingMongoDb.Controllers
         TodoTaskRepository _todoTaskRepository = new TodoTaskRepository();
         EmployeeRepository _employeeRepository = new EmployeeRepository();
         // GET: api/<EmployeeController>
-        [HttpGet]
+        [HttpGet("all")]
         public IEnumerable<Employee> Get()
         {
             return _employeeRepository.GetAll();
         }
 
         // GET api/<EmployeeController>/5
-        [HttpGet("{id}")]
+        [HttpGet("get/{id}")]
         public Employee Get(string id)
         {
             return _employeeRepository.GetById(id);
         }
 
         // POST api/<EmployeeController>
-        [HttpPost]
+        [HttpPost("add")]
         public void Post([FromBody] Employee value)
         {
             _employeeRepository.Add(value);
         }
 
         // PUT api/<EmployeeController>/5
-        [HttpPut("{id}")]
+        [HttpPut("update/{id}")]
         public void Put(string id, [FromBody] Employee value)
         {
             value.Id = id;
-            _employeeRepository.Update(value);
+            _employeeRepository.Replace(value);
         }
 
         // DELETE api/<EmployeeController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
         public void Delete(string id)
         {
             _employeeRepository.Delete(id);
         }
+
     }
 }
