@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SeliseTask_003
+namespace CurrentDatetime.API.Models
 {
     public class DatetimeProvider : IDatetimeProvider
     {
-        public DateTime UtcNow 
+        public DateTime UtcNow
         {
             get => DateTime.UtcNow;
         }

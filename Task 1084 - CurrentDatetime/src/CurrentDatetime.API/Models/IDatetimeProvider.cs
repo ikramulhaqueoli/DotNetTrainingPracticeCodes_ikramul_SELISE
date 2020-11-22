@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SeliseTask_003
+namespace CurrentDatetime.API.Models
 {
     public interface IDatetimeProvider
     {

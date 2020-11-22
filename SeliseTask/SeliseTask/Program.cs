@@ -3,7 +3,7 @@ using System;
 using Unity;
 using Unity.Injection;
 
-namespace SeliseTask
+namespace SeliseTask_003
 {
     public class Program
     {
