@@ -55,9 +55,9 @@ namespace TodoAppWebApiUsingMongoDb.Controllers
         [HttpGet("TasksDeadlineUpto/{date}")]
         public List<TodoTask> TasksDeadlineUpto(string date)
         {
-            IEnumerable<TodoTask> tasks = from t in _todoTaskRepository.GetAll()
-                               where t.DeadLine <= DateTime.Parse(date)
-                               select t;
+            IEnumerable<TodoTask> tasks =   from t in _todoTaskRepository.GetAll()
+                                            where t.DeadLine <= DateTime.Parse(date)
+                                            select t;
             return tasks.ToList();
         }
 
